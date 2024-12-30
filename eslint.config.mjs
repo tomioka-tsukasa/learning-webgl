@@ -13,6 +13,7 @@ const eslintConfig = [
     rules: {
       ...tsPlugin.configs.recommended.rules,
       'eol-last': ['error', 'always'],
+      'indent': ['error', 2],
       'semi': ['error', 'never'],
       'quotes': ['error', 'single'],
       'jsx-quotes': ['error', 'prefer-single'],
