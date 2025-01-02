@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { SetupShaderFullCanvas } from './types'
-import { setupFullScreen } from '@/utility/setupFullScreen'
+import { setupFullScreen } from '@/webgl/setup/three/setupFullScreen'
 
 /**
  * Canvasと同じサイズのPlaneGeometryを描画するセットアップ関数

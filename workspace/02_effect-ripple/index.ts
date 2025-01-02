@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import { shaderDebug } from '@/utility/shaderDebug'
-import { textureLoader } from '@/utility/textureLoader'
+import { shaderDebug } from '@/webgl/setup/three/shaderDebug'
+import { textureLoader } from '@/webgl/setup/three/textureLoader'
 import { Setup } from './types'
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
