@@ -14,4 +14,12 @@ export default defineConfig({
       'public': path.resolve(__dirname, 'public'),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        '02_effect-ripple': 'workspace/02_effect-ripple/index.html'
+      },
+    },
+  },
 })

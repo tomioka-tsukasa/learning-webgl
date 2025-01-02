@@ -15,6 +15,7 @@
 
     /* Linting */
     "strict": true,
+    "noEmitOnError": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -29,6 +30,7 @@
   },
   "include": [
     "src",
+    "workspace",
     "glsl.d.ts"
   ]
 }

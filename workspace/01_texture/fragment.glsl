@@ -15,7 +15,7 @@ uniform float uTick;
 // #pragma glslify: pnoise4 = require(glsl-noise/periodic/4d)
 
 void main() {
-  float tick = uTick * 0.05;
+  float tick = uTick * 0.01;
   float time = sin(tick);
 
   // vec2 -> vec3 に変換し、周期 vec3(1.0, 1.0, 1.0) を指定
@@ -27,8 +27,8 @@ void main() {
   noise = noise * 2.;
 
   // timeに基づいてノイズを減少させる（timeが進むにつれて1.0に近づく）
-  float fadeAmount = min(tick * 0.5, 1.0);  // 時間が経過するにつれて1.0に近づく
-  noise = mix(noise, 1., fadeAmount);  // noise を 1.0 に近づける
+  // float fadeAmount = min(tick * 0.5, 1.0);  // 時間が経過するにつれて1.0に近づく
+  // noise = mix(noise, 1., fadeAmount);  // noise を 1.0 に近づける
 
   // vec4 texColor = texture(uTex, vec2(vUv.x * (noise + 1.), vUv.y * (noise + 1.)));
   vec4 texColor = texture(uTex, vUv * noise * noise * noise);

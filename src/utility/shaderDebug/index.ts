@@ -3,7 +3,7 @@ import * as THREE from 'three'
 export const shaderDebug = (
   renderer: THREE.WebGLRenderer
 ) => {
-  renderer.debug.onShaderError = ( gl, program, vertexShader, fragmentShader ) => {
+  renderer.debug.onShaderError = ( gl, _, vertexShader, fragmentShader ) => {
     const vertexShaderSource = gl.getShaderSource( vertexShader )
     const fragmentShaderSource = gl.getShaderSource( fragmentShader )
 

@@ -1,4 +1,4 @@
-import { setup } from './workspace/02_effect-ripple/index'
+import { setup } from './02_effect-ripple/'
 
 document.addEventListener('DOMContentLoaded', () => {
   setup()

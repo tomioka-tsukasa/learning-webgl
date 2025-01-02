@@ -28,7 +28,7 @@ export const setup: Setup = async () => {
         value: 0
       },
       uTex: {
-        value: await textureLoader('public/images/output2.jpg')
+        value: await textureLoader('/images/output2.jpg')
       }
     },
     vertexShader,

@@ -7,7 +7,7 @@ export const animation = (
     opacity: 0
   }, {
     opacity: 1,
-    duration: 1.2,
-    ease: 'power1.in',
+    duration: 1.5,
+    ease: 'power2.in',
   })
 }
