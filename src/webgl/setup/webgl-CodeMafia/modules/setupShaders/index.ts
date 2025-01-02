@@ -23,6 +23,7 @@ export const setupShaders: SetupShaders = (
   gl.attachShader(shaderProgram, fragmentShader)
   // vertexシェーダーとfragmentシェーダーをリンク
   gl.linkProgram(shaderProgram)
+
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
     console.error('シェーダーのセットアップに失敗しました。')
   }

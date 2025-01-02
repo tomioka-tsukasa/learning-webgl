@@ -15,6 +15,7 @@ export const draw: Draw = (
   let tick = 0
 
   animate()
+
   function animate() {
     tick++
     // 背景色を特定の色で指定（0~1のrgbaで指定）

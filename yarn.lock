@@ -756,6 +756,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/dat.gui@npm:^0":
+  version: 0.7.13
+  resolution: "@types/dat.gui@npm:0.7.13"
+  checksum: 10c0/070ab25cea25988d5a1b7550b1af2959039e1ca82a8a975c59ed553b4d68e775f62ba6fb9893bedddf44201d593792f615b2e840814977263843dfd7da818d08
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:1.0.6, @types/estree@npm:^1.0.0, @types/estree@npm:^1.0.6":
   version: 1.0.6
   resolution: "@types/estree@npm:1.0.6"
@@ -1281,6 +1288,13 @@ __metadata:
   bin:
     cssesc: bin/cssesc
   checksum: 10c0/6bcfd898662671be15ae7827120472c5667afb3d7429f1f917737f3bf84c4176003228131b643ae74543f17a394446247df090c597bb9a728cce298606ed0aa7
+  languageName: node
+  linkType: hard
+
+"dat.gui@npm:^0.7.9":
+  version: 0.7.9
+  resolution: "dat.gui@npm:0.7.9"
+  checksum: 10c0/33cc1515bfe083143cee5b9e5a87d93e8a24a851b9e63f5c2afb30b2e7bd953832792e539e90b1d68f31508ad873e0de8b762013122b413471cc9dc019a8d0b9
   languageName: node
   linkType: hard
 
@@ -2829,9 +2843,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "my-vue-app@workspace:."
   dependencies:
+    "@types/dat.gui": "npm:^0"
     "@types/three": "npm:^0.171.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.18.2"
     "@typescript-eslint/parser": "npm:^8.18.2"
+    dat.gui: "npm:^0.7.9"
     eslint: "npm:^9"
     glsl-hsl2rgb: "npm:^1.1.0"
     glsl-noise: "npm:^0.0.0"

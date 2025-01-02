@@ -23,6 +23,7 @@ export const loadShader: LoadShader = (
     console.error('シェーダーの作成に失敗しました。', gl.getShaderInfoLog(shader))
     // 問題のあるコードの場合は削除
     gl.deleteShader(shader)
+
     return null
   }
 

@@ -7,5 +7,6 @@ export const textureLoader: TextureLoader = async (
   const texture = new THREE.TextureLoader().loadAsync(
     url,
   )
+
   return texture
 }

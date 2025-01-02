@@ -7,6 +7,7 @@ export const createGLContext: CreateGLContext = (
   canvas
 ) => {
   const ctx: WebGLRenderingContext | null = canvas.getContext('webgl')
+
   if (ctx) {
     ctx.viewport(
       0,
@@ -17,5 +18,6 @@ export const createGLContext: CreateGLContext = (
   } else {
     console.error('WebGLのコンテキストを生成できません。')
   }
+
   return ctx
 }

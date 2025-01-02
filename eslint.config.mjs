@@ -19,7 +19,30 @@ const eslintConfig = [
       'jsx-quotes': ['error', 'prefer-single'],
       'no-trailing-spaces': ['error', {
         'ignoreComments': true
-      }]
+      }],
+      'padding-line-between-statements': [
+        'error',
+        {
+          'blankLine': 'always',
+          'prev': '*',
+          'next': 'return'
+        },
+        {
+          'blankLine': 'always',
+          'prev': '*',
+          'next': 'function'
+        },
+        {
+          'blankLine': 'always',
+          'prev': '*',
+          'next': 'if'
+        },
+        {
+          'blankLine': 'always',
+          'prev': '*',
+          'next': 'block'
+        },
+      ],
     }
   }
 ]

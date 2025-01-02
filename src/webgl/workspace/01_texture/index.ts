@@ -1,11 +1,11 @@
 import * as THREE from 'three'
 import { shaderDebug } from '@/utility/shaderDebug'
 import { textureLoader } from '@/utility/textureLoader'
-import { ThreeSetup } from './types'
+import { Setup } from './types'
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
 
-export const threeSetup: ThreeSetup = async () => {
+export const setup: Setup = async () => {
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(
     75,
@@ -28,7 +28,7 @@ export const threeSetup: ThreeSetup = async () => {
         value: 0
       },
       uTex: {
-        value: await textureLoader('public/images/samples/output2.jpg')
+        value: await textureLoader('public/images/output2.jpg')
       }
     },
     vertexShader,

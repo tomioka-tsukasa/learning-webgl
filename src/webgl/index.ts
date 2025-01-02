@@ -1,6 +1,5 @@
-import { threeSetup } from './workspace/01_texture/index'
-// import { webglSetup } from './webglSetup'
+import { setup } from './workspace/02_slider-noise/index'
 
 document.addEventListener('DOMContentLoaded', () => {
-  threeSetup()
+  setup()
 })

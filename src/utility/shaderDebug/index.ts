@@ -9,6 +9,7 @@ export const shaderDebug = (
 
     // 頂点シェーダーのエラーチェック
     const vertexShaderError = gl.getShaderInfoLog(vertexShader)
+
     if (vertexShaderError) {
       console.error(vertexShaderError) // エラーメッセージを表示
       console.groupCollapsed('vertexShader')
@@ -22,6 +23,7 @@ export const shaderDebug = (
 
     // フラグメントシェーダーのエラーチェック
     const fragmentShaderError = gl.getShaderInfoLog(fragmentShader)
+
     if (fragmentShaderError) {
       console.error(fragmentShaderError) // エラーメッセージを表示
       console.groupCollapsed('fragmentShader')
