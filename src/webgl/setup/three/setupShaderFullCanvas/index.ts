@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { SetupShaderCanvas } from './types'
+import { SetupShaderFullCanvas } from './types'
 import { setupFullScreen } from '@/utility/setupFullScreen'
 
 /**
@@ -13,14 +13,14 @@ import { setupFullScreen } from '@/utility/setupFullScreen'
  *   mesh: THREE.Mesh
  * }}
  */
-export const setupShaderCanvas: SetupShaderCanvas = (
+export const setupShaderFullCanvas: SetupShaderFullCanvas = (
   canvas,
   shaderMaterialParams,
 ) => {
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(
     75,
-    window.innerWidth / window.innerHeight,
+    canvas.clientWidth / canvas.clientHeight,
     0.1,
     1000
   )

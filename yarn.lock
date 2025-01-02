@@ -2039,6 +2039,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"glsl-easings@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "glsl-easings@npm:1.0.0"
+  checksum: 10c0/d578006318f7c8a4976812173559931ec10a47c9c80f72dd663e72921e84daaad943d429ac9b0c2991ab301901f18b9914694fa75e05c36f0e5badaf432453fd
+  languageName: node
+  linkType: hard
+
 "glsl-hsl2rgb@npm:^1.1.0":
   version: 1.1.0
   resolution: "glsl-hsl2rgb@npm:1.1.0"
@@ -2230,6 +2237,13 @@ __metadata:
   version: 1.4.0
   resolution: "graphemer@npm:1.4.0"
   checksum: 10c0/e951259d8cd2e0d196c72ec711add7115d42eb9a8146c8eeda5b8d3ac91e5dd816b9cd68920726d9fd4490368e7ed86e9c423f40db87e2d8dfafa00fa17c3a31
+  languageName: node
+  linkType: hard
+
+"gsap@npm:^3.12.5":
+  version: 3.12.5
+  resolution: "gsap@npm:3.12.5"
+  checksum: 10c0/cb38e89bd577fc18c9cf77e4aeb83617603b1e0fa768fe8ca1acd836fd852936722e186a88c9cf6ece42e53407edd45324be2bfe35a41f424c5f2c2b33fd1a98
   languageName: node
   linkType: hard
 
@@ -2849,9 +2863,11 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.18.2"
     dat.gui: "npm:^0.7.9"
     eslint: "npm:^9"
+    glsl-easings: "npm:^1.0.0"
     glsl-hsl2rgb: "npm:^1.1.0"
     glsl-noise: "npm:^0.0.0"
     glslify: "npm:^7.1.1"
+    gsap: "npm:^3.12.5"
     path: "npm:^0.12.7"
     postcss-html: "npm:^1.7.0"
     sass: "npm:^1.83.0"

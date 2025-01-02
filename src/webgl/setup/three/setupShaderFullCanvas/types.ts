@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-export type SetupShaderCanvas = (
+export type SetupShaderFullCanvas = (
   canvas: HTMLCanvasElement,
   shaderMaterialParams: ConstructorParameters<typeof THREE.ShaderMaterial>[0],
 ) => {

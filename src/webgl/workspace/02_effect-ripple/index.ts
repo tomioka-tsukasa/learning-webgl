@@ -4,8 +4,10 @@ import { textureLoader } from '@/utility/textureLoader'
 import { Setup } from './types'
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
-import { setupShaderCanvas } from '@/webgl/setup/three/setupShaderCanvas'
+import { setupShaderFullCanvas } from '@/webgl/setup/three/setupShaderFullCanvas'
 import { setupRenderer } from '@/webgl/setup/three/setupRenderer'
+import { logThreeObjects } from '@/webgl/setup/three/logThreeObjects'
+import { animation } from './animation'
 
 export const setup: Setup = async () => {
   const { canvas, renderer } = setupRenderer(
@@ -13,11 +15,12 @@ export const setup: Setup = async () => {
       antialias: true,
       logarithmicDepthBuffer: true,
     },
+    'canvas'
   )
 
   if (!canvas || !renderer) return null
 
-  const { scene, camera, geom, mat, mesh } = setupShaderCanvas(
+  const { scene, camera, geom, mat, mesh } = setupShaderFullCanvas(
     canvas,
     {
       uniforms: {
@@ -25,7 +28,7 @@ export const setup: Setup = async () => {
           value: 0
         },
         uTex: {
-          value: await textureLoader('public/images/output2.jpg')
+          value: await textureLoader('public/images/output1_.jpg')
         }
       },
       vertexShader,
@@ -36,13 +39,7 @@ export const setup: Setup = async () => {
     }
   )
 
-  console.group('Three Objects Log.')
-  console.log('scene', scene); console.log('camera', camera); console.log('geom', geom); console.log('mat', mat); console.log('mesh', mesh)
-  console.groupEnd()
-
-  shaderDebug(renderer)
-
-  function animate() {
+  const animate = () => {
     const tick = () => {
       requestAnimationFrame(tick)
       mat.uniforms.uTick.value++
@@ -51,4 +48,8 @@ export const setup: Setup = async () => {
     tick()
   }
   animate()
+  animation(canvas)
+
+  logThreeObjects(scene, camera, geom, mat, mesh)
+  shaderDebug(renderer)
 }
