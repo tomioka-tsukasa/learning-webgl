@@ -1,12 +1,6 @@
-precision mediump float;
-
-attribute vec2 aVertexPosition;
-attribute vec3 aVertexColor;
-varying vec3 vVertexColor;
-uniform float uTick;
+varying vec2 vUv;
 
 void main(){
-  vec2 p=aVertexPosition;
-  vVertexColor=aVertexColor;
-  gl_Position=vec4(p,0.,1.);
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
 }
