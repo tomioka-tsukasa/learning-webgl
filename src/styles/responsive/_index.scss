@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:math";
+@use "./config" as config;
+@use "../utilities" as *;
+
+@mixin sp {
+  @media screen and (max-width: #{config.$mqSp}px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{config.$mqSp + 1}px) and (max-width: #{config.$mqTablet}px) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media screen and (min-width: #{config.$mqSp + 1}px) {
+    @content;
+  }
+}
+
+@mixin pc-over {
+  @media screen and (min-width: #{config.$mqPc + 1}px) {
+    @content;
+  }
+}
+
+@mixin rvw(
+  $prop,
+  $values,
+  $spvalues: $values,
+  $tabletvalues: $values,
+  $noLimit: config.$defaultLimit
+) {
+  @if list.length($values) > 0 {
+    @include sp {
+      $buffers: ();
+
+      @each $value in $spvalues {
+        $buffers: list.append(
+          $buffers,
+          vw-calc($value, config.$designWidthSp) * 1vw
+        );
+      }
+
+      #{$prop}: $buffers;
+    }
+
+    @include pc {
+      $buffers: ();
+
+      @each $value in $values {
+        $buffers: list.append(
+          $buffers,
+          vw-calc($value, config.$designWidthPc) * 1vw
+        );
+      }
+
+      #{$prop}: $buffers;
+    }
+
+    @include tablet {
+      $buffers: ();
+
+      @each $value in $tabletvalues {
+        $buffers: list.append(
+          $buffers,
+          vw-calc($value, config.$designWidthTablet) * 1vw
+        );
+      }
+
+      #{$prop}: $buffers;
+    }
+
+    @if $noLimit == false {
+      @include pc-over {
+        $buffers: ();
+        $scalingFactor: math.div(config.$mqPc, config.$designWidthPc);
+
+        @each $value in $values {
+          $scaledValue: $value * $scalingFactor;
+          $buffers: list.append($buffers, #{$scaledValue}px);
+        }
+
+        #{$prop}: $buffers;
+      }
+    }
+  }
+}

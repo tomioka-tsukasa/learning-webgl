@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:math";
+@use "../../responsive/config" as responsive;
+
+@function process-size($size) {
+  @if meta.type-of($size) == "number" {
+    @return strip-unit($size);
+  }
+
+  @return $size;
+}
+
+@function strip-unit($value) {
+  @return math.div($value, 1);
+}
+
+@function vw-calc($size, $viewport: responsive.$designWidthSp) {
+  $size: process-size($size);
+  $rate: math.div(100, $viewport);
+
+  @return $rate * $size;
+}
+
+@function vw($size, $viewport: responsive.$designWidthSp) {
+  @return vw-calc($size, $viewport) * 1vw;
+}

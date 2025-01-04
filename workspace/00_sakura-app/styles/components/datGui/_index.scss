@@ -1,0 +1,24 @@
+.lil-gui {
+  --font-size: 16px;
+  --input-font-size: 14px;
+  --spacing: 9px;
+  --background-color: #eee;
+  --title-text-color: #0f0f0f;
+  --title-background-color: #d0d0d0;
+  --text-color: #1f1f1f;
+  --hover-color: #afafaf;
+  --widget-color: #ccc;
+  --focus-color: #dfdfdf;
+  --number-color: #1b3bb0;
+  --string-color: #9cd29a;
+
+  &.root {
+    width: 36%;
+    max-width: 460px;
+    border: 1px solid #1f1f1f;
+  }
+
+  .controller.option .display {
+    width: 100%;
+  }
+}

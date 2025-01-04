@@ -1,0 +1,26 @@
+@use '@/styles/responsive/index' as *;
+@use '@/styles/utilities/index' as *;
+@use '@/styles/colors/index' as colors;
+@use '@/styles/fonts/index' as fonts;
+@use "@/styles/responsive/config" as responsive;
+
+@mixin btn-shadow() {
+  box-shadow: 0 0 12px rgba(colors.$black, 0.1);
+}
+
+@mixin transition(
+  $prop: all,
+  $speed: 'normal',
+  $timing: ease,
+  $delay: 0s
+) {
+  @if $speed == 'normal' {
+    transition: $prop 0.5s $timing $delay;
+  } @else if $speed == 'high' {
+    transition: $prop 0.3s $timing $delay;
+  } @else if $speed == 'low' {
+    transition: $prop 0.7s $timing $delay;
+  }
+}
+
+$cubic-normal: cubic-bezier(0.5, 2.25, 0.5, 1.25);

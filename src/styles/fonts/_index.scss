@@ -1,0 +1,30 @@
+@import 'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap';
+
+$default: "Helvetica Neue", arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", meiryo, sans-serif;
+
+@mixin base(
+  $weight: 400,
+  $style: normal,
+) {
+  font-family: "Zen Kaku Gothic New", $default;
+  font-style: $style;
+  font-weight: $weight;
+}
+
+@mixin strong(
+  $weight: 400,
+  $style: normal
+) {
+  font-family: Lato, $default;
+  font-style: $style;
+  font-weight: $weight;
+}
+
+@mixin support(
+  $weight: 400,
+  $style: normal
+) {
+  font-family: "Noto Sans", $default;
+  font-style: $style;
+  font-weight: $weight;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebGL</title>
+    <style>
+      .canvasContainer {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        padding: 32px 9px 9px;
+      }
+
+      .canvasItem {
+        width: 100%;
+      }
+
+      .head {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .canvas {
+        width: 100%;
+        aspect-ratio: 1200 / 900;
+      }
+
+      * + .canvas {
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvasContainer">
+      <div class="canvasItem">
+        <h2 class="head">加工画像</h2>
+        <canvas id="canvas" class="canvas"></canvas>
+      </div>
+      <div class="canvasItem">
+        <h2 class="head">オリジナル画像</h2>
+        <canvas id="originalCanvas" class="canvas"></canvas>
+      </div>
+    </div>
+    <script type="module" src="./index.ts"></script>
+  </body>
+</html>

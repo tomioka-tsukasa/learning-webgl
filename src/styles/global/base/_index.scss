@@ -1,0 +1,31 @@
+@use '@/styles/responsive/index' as *;
+@use '@/styles/utilities/index' as *;
+@use '@/styles/colors/index' as colors;
+@use '@/styles/fonts/index' as fonts;
+@use "@/styles/responsive/config" as responsive;
+
+body {
+  background-color: colors.$bg;
+
+  @include fonts.base;
+}
+
+.pc {
+  @include pc {
+    display: initial;
+  }
+
+  @include sp {
+    display: none;
+  }
+}
+
+.sp {
+  @include pc {
+    display: none;
+  }
+
+  @include sp {
+    display: initial;
+  }
+}

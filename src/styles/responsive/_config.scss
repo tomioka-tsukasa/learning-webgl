@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:math";
+
+$designWidthSp: 375;
+$designWidthTablet: 1024;
+$designWidthPc: 1440;
+
+$mqSp: 480;
+$mqTablet: 1024;
+$mqPc: 1440;
+
+$defaultLimit: false;
