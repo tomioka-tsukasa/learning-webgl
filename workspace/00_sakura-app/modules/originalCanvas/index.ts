@@ -1,11 +1,10 @@
-import * as THREE from 'three'
 import { textureLoader } from '@/webgl/setup/three/textureLoader'
 import vertexShader from './vertex.glsl'
 import fragmentShader from './fragment.glsl'
 import { setupShaderFullCanvas } from '@/webgl/setup/three/setupShaderFullCanvas'
 import { setupRenderer } from '@/webgl/setup/three/setupRenderer'
-import { datGuiParams } from '../datGui'
 import { Setup } from './types'
+import { ctrlMember } from '../controller/member'
 
 export const originalCanvas: Setup = async () => {
   const { canvas, renderer } = setupRenderer(
@@ -26,7 +25,7 @@ export const originalCanvas: Setup = async () => {
           value: 0
         },
         uTex: {
-          value: await textureLoader(datGuiParams['画像選択'].default)
+          value: await textureLoader(ctrlMember.selectImage.default)
         },
       },
       vertexShader,

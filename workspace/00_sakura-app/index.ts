@@ -7,8 +7,9 @@ import fragmentShader from './fragment.glsl'
 import { setupShaderFullCanvas } from '@/webgl/setup/three/setupShaderFullCanvas'
 import { setupRenderer } from '@/webgl/setup/three/setupRenderer'
 import { logThreeObjects } from '@/webgl/setup/three/logThreeObjects'
-import { datGui, datGuiParams } from './modules/datGui'
+import { initCtrl } from './modules/controller'
 import { originalCanvas } from './modules/originalCanvas'
+import { ctrlMember, setUniforms } from './modules/controller/member'
 
 export const setup: Setup = async () => {
   const { canvas, renderer } = setupRenderer(
@@ -29,41 +30,12 @@ export const setup: Setup = async () => {
           value: 0
         },
         uTex: {
-          value: await textureLoader(datGuiParams['画像選択'].default)
+          value: await textureLoader(ctrlMember.selectImage.default)
         },
         uOverlay: {
           value: await textureLoader('/images/overlay-1.jpg')
         },
-        uLiStrength: {
-          value: datGuiParams['明るさ']['強さ'].target.value
-        },
-        uLiRange: {
-          value: datGuiParams['明るさ']['範囲'].target.value
-        },
-        uLiToggle: {
-          value: datGuiParams['明るさ']['オン/オフ']
-        },
-        uSaPinkStrength: {
-          value: datGuiParams['ピンク強度']['強さ'].target.value
-        },
-        uSaPinkRange: {
-          value: datGuiParams['ピンク強度']['範囲'].target.value
-        },
-        uSaPinkToggle: {
-          value: datGuiParams['ピンク強度']['オン/オフ']
-        },
-        uColdStrength: {
-          value: datGuiParams['寒色フィルター']['強さ'].target.value
-        },
-        uColdToggle: {
-          value: datGuiParams['寒色フィルター']['オン/オフ']
-        },
-        uWarmStrength: {
-          value: datGuiParams['暖色フィルター']['強さ'].target.value
-        },
-        uWarmToggle: {
-          value: datGuiParams['暖色フィルター']['オン/オフ']
-        },
+        ...setUniforms
       },
       vertexShader,
       fragmentShader,
@@ -74,7 +46,6 @@ export const setup: Setup = async () => {
   const original = await originalCanvas()
 
   if (!original) return null
-
 
   const animate = () => {
     const tick = () => {
@@ -88,7 +59,7 @@ export const setup: Setup = async () => {
   animate()
   shaderDebug(renderer)
   logThreeObjects(scene, camera, geom, mat, mesh)
-  datGui(mat, original.mat)
+  initCtrl(mat, original.mat)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
