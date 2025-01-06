@@ -3,9 +3,34 @@ export const ctrlMember = {
     name: '画像選択',
     default: '元々良い感じの画像',
     values: {
-      '元々良い感じの画像': '/images/sakura-sample-001.jpg',
-      '暗めの画像': '/images/sakura-sample-002.jpg',
-      '色鮮やかな画像': '/images/sakura-sample-003.jpg',
+      '元々良い感じの画像': '/images/sakura-choise-001.jpg',
+      '暗めの画像': '/images/sakura-choise-002.jpg',
+      '色鮮やかな画像': '/images/sakura-choise-003.jpg',
+      'サンプル_1': '/images/sakura-sample-001.jpg',
+      'サンプル_2': '/images/sakura-sample-002.jpg',
+      'サンプル_3': '/images/sakura-sample-003.jpg',
+      'サンプル_4': '/images/sakura-sample-004.jpg',
+    },
+  },
+  sakuraFilter: {
+    name: '桜良い感じフィルター',
+    values: {
+      st: {
+        name: '強さ',
+        target: {
+          value: 0.42
+        },
+        min: 0.0,
+        max: 1.0,
+      },
+      to: {
+        name: 'on/off',
+        value: true,
+      }
+    },
+    uniforms: {
+      st: 'uSakuraSt',
+      to: 'uSakuraTo',
     },
   },
   strengthPink: {
@@ -37,27 +62,6 @@ export const ctrlMember = {
       ra: 'uStPinkRa',
       to: 'uStPinkTo',
     }
-  },
-  sakuraFilter: {
-    name: '桜良い感じフィルター',
-    values: {
-      st: {
-        name: '強さ',
-        target: {
-          value: 0.342
-        },
-        min: 0.0,
-        max: 1.0,
-      },
-      to: {
-        name: 'on/off',
-        value: true,
-      }
-    },
-    uniforms: {
-      st: 'uSakuraSt',
-      to: 'uSakuraTo',
-    },
   },
   exposure: {
     name: '露出量',
@@ -128,14 +132,14 @@ export const ctrlMember = {
       st: {
         name: '強さ',
         target: {
-          value: 0.0
+          value: 0.122
         },
         min: -1.0,
         max: 1.0,
       },
       to: {
         name: 'on/off',
-        value: false,
+        value: true,
       }
     },
     uniforms: {

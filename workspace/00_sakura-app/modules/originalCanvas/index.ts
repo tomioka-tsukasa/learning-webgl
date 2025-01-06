@@ -30,7 +30,6 @@ export const originalCanvas: Setup = async () => {
       },
       vertexShader,
       fragmentShader,
-      transparent: true,
     }
   )
 

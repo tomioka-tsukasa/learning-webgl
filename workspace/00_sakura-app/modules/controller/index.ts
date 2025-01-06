@@ -7,7 +7,9 @@ export const initCtrl: InitCtrl = (
   shmatParams,
   shmatParamsOriginal,
 ) => {
-  const gui = new GUI()
+  const gui = new GUI({
+    title: '開く / 閉じる'
+  })
 
   selectImage(
     ctrlMember.selectImage.name,

@@ -29,12 +29,12 @@ uniform float uBTo;
 
 vec3 sakuraFilter(vec3 color, float strength) {
   float orSt = strength;
-  float total = 0.847 + 0.718 + 0.806; // 2.371
-  float rRate = 0.847 / total * 2.79929161749;
-  float gRate = 0.718 / total * 2.79929161749;
-  float bRate = 0.806 / total * 2.79929161749;
+  float total = 0.11 + 0.095 + 0.10;
+  float rRate = 0.11 / total * 2.79929161749;
+  float gRate = 0.095 / total * 2.79929161749;
+  float bRate = 0.10 / total * 2.79929161749;
 
-  strength = mix(1., 3., orSt);
+  strength = mix(1., 2.5, orSt);
 
   color = vec3(
     clamp(color.r * rRate * strength, 0., 1.),
@@ -151,18 +151,21 @@ vec3 brilliance(vec3 color, float amount) {
 
 void main() {
   float tick = uTick * .01;
-  const float blendStrength = .6;
+  const float blendStrength = .3;
 
   vec4 baseTex = texture2D(uTex, vUv);
   vec4 overlayTex = texture2D(uOverlay, vUv);
 
-  vec3 hsl = rgb2hsl(baseTex.rgb);
+  vec4 tex = baseTex;
+  // tex = overlay(baseTex, overlayTex, blendStrength);
+
+  vec3 color = rgb2hsl(tex.rgb);
 
   if (uStPinkTo == 1.0) {
-    hsl = stPink(hsl, uStPinkRa, uStPinkSt);
+    color = stPink(color, uStPinkRa, uStPinkSt);
   }
 
-  vec3 color = hsl2rgb(hsl);
+  color = hsl2rgb(color);
 
   if (uSakuraTo == 1.0) {
     color = sakuraFilter(color, uSakuraSt);
@@ -204,9 +207,5 @@ void main() {
   }
 
   gl_FragColor = vec4(color.rgb, baseTex.a);
-
   // sketchEffect(baseTex, uTex, vUv, color);
-
-  // vec4 blendColor = overlay(baseTex, overlayTex, blendStrength);
-  // gl_FragColor = blendColor;
 }

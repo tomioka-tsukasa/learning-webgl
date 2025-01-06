@@ -35,7 +35,11 @@ export const setupShaderFullCanvas: SetupShaderFullCanvas = (
 
   camera.position.z = cameraDistance
   const geom = planeGeom
-  const mat = new THREE.ShaderMaterial(shaderMaterialParams)
+  const mat = new THREE.ShaderMaterial({
+    transparent: true,
+    precision: 'highp',
+    ...shaderMaterialParams,
+  })
   const mesh = new THREE.Mesh(geom, mat)
 
   scene.add(mesh)

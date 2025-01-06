@@ -12,6 +12,7 @@ export const setupRenderer: SetupRenderer = (
     ...rendererParams,
     canvas: canvas ? canvas : undefined,
   })
+  renderer.setPixelRatio(window.devicePixelRatio)
 
   renderer.setSize(
     canvas ? canvas.clientWidth : window.innerWidth,

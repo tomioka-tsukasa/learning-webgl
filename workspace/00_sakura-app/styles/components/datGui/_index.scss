@@ -3,8 +3,8 @@
   --input-font-size: 14px;
   --spacing: 9px;
   --background-color: #eee;
-  --title-text-color: #0f0f0f;
-  --title-background-color: #d0d0d0;
+  --title-text-color: #efefef;
+  --title-background-color: #0f0f0f;
   --text-color: #1f1f1f;
   --hover-color: #afafaf;
   --widget-color: #ccc;
@@ -21,4 +21,13 @@
   .controller.option .display {
     width: 100%;
   }
+}
+
+body:not(.lil-gui-dragging) .lil-gui.root > .title:hover {
+  background-color: var(--title-background-color) !important;
+  opacity: 0.8;
+}
+
+body:not(.lil-gui-dragging) .lil-gui .title:hover {
+  background-color: inherit !important;
 }

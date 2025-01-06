@@ -33,13 +33,12 @@ export const setup: Setup = async () => {
           value: await textureLoader(ctrlMember.selectImage.values[ctrlMember.selectImage.default])
         },
         uOverlay: {
-          value: await textureLoader('/images/overlay-1.jpg')
+          value: await textureLoader('/images/overlay-9.jpg')
         },
         ...setUniforms
       },
       vertexShader,
       fragmentShader,
-      transparent: true,
     }
   )
 
