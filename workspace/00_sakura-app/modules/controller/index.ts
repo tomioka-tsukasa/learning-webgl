@@ -17,12 +17,12 @@ export const initCtrl: InitCtrl = (
     shmatParamsOriginal,
   )
 
-  strengthRangeGui(
-    ctrlMember.lightness.name,
+  strengthGui(
+    ctrlMember.sakuraFilter.name,
     gui,
-    ctrlMember.lightness.values,
+    ctrlMember.sakuraFilter.values,
     shmatParams,
-    ctrlMember.lightness.uniforms,
+    ctrlMember.sakuraFilter.uniforms,
   )
 
   strengthRangeGui(
@@ -34,19 +34,43 @@ export const initCtrl: InitCtrl = (
   )
 
   strengthGui(
-    ctrlMember.coldFilter.name,
+    ctrlMember.exposure.name,
     gui,
-    ctrlMember.coldFilter.values,
+    ctrlMember.exposure.values,
     shmatParams,
-    ctrlMember.coldFilter.uniforms,
+    ctrlMember.exposure.uniforms,
   )
 
   strengthGui(
-    ctrlMember.warmFilter.name,
+    ctrlMember.highlights.name,
     gui,
-    ctrlMember.warmFilter.values,
+    ctrlMember.highlights.values,
     shmatParams,
-    ctrlMember.warmFilter.uniforms,
+    ctrlMember.highlights.uniforms,
+  )
+
+  strengthGui(
+    ctrlMember.shadows.name,
+    gui,
+    ctrlMember.shadows.values,
+    shmatParams,
+    ctrlMember.shadows.uniforms,
+  )
+
+  strengthGui(
+    ctrlMember.contrast.name,
+    gui,
+    ctrlMember.contrast.values,
+    shmatParams,
+    ctrlMember.contrast.uniforms,
+  )
+
+  strengthGui(
+    ctrlMember.brilliance.name,
+    gui,
+    ctrlMember.brilliance.values,
+    shmatParams,
+    ctrlMember.brilliance.uniforms,
   )
 
   strengthGui(

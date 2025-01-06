@@ -1,41 +1,11 @@
 export const ctrlMember = {
   selectImage: {
     name: '画像選択',
-    default: '/images/sakura-sample-001.jpg',
-    values: [
-      '/images/sakura-sample-001.jpg',
-      '/images/sakura-sample-002.jpg',
-      '/images/sakura-sample-003.jpg',
-    ],
-  },
-  lightness: {
-    name: '明るさ',
+    default: '元々良い感じの画像',
     values: {
-      st: {
-        name: '強さ',
-        target: {
-          value: 0.182
-        },
-        min: 0.0,
-        max: 1.0,
-      },
-      ra: {
-        name: '範囲',
-        target: {
-          value: 0.25
-        },
-        min: 0.0,
-        max: 1.0,
-      },
-      to: {
-        name: 'オン/オフ',
-        value: true,
-      }
-    },
-    uniforms: {
-      st: 'uLiSt',
-      ra: 'uLiRa',
-      to: 'uLiTo',
+      '元々良い感じの画像': '/images/sakura-sample-001.jpg',
+      '暗めの画像': '/images/sakura-sample-002.jpg',
+      '色鮮やかな画像': '/images/sakura-sample-003.jpg',
     },
   },
   strengthPink: {
@@ -44,21 +14,21 @@ export const ctrlMember = {
       st: {
         name: '強さ',
         target: {
-          value: 0.44
+          value: -0.154
         },
-        min: 0.0,
+        min: -1.0,
         max: 1.0,
       },
       ra: {
         name: '範囲',
         target: {
-          value: 0.277
+          value: 1.0
         },
         min: 0.0,
         max: 1.0,
       },
       to: {
-        name: 'オン/オフ',
+        name: 'on/off',
         value: true,
       }
     },
@@ -68,46 +38,130 @@ export const ctrlMember = {
       to: 'uStPinkTo',
     }
   },
-  coldFilter: {
-    name: '寒色フィルター',
+  sakuraFilter: {
+    name: '桜良い感じフィルター',
     values: {
       st: {
         name: '強さ',
         target: {
-          value: .186
+          value: 0.342
         },
         min: 0.0,
         max: 1.0,
       },
       to: {
-        name: 'オン/オフ',
+        name: 'on/off',
         value: true,
       }
     },
     uniforms: {
-      st: 'uColdSt',
-      to: 'uColdTo',
+      st: 'uSakuraSt',
+      to: 'uSakuraTo',
     },
   },
-  warmFilter: {
-    name: '暖色フィルター',
+  exposure: {
+    name: '露出量',
     values: {
       st: {
         name: '強さ',
         target: {
-          value: .18
+          value: 0.0
         },
-        min: 0.0,
+        min: -1.0,
         max: 1.0,
       },
       to: {
-        name: 'オン/オフ',
+        name: 'on/off',
+        value: false,
+      }
+    },
+    uniforms: {
+      st: 'uExSt',
+      to: 'uExTo',
+    },
+  },
+  highlights: {
+    name: 'ハイライト',
+    values: {
+      st: {
+        name: '強さ',
+        target: {
+          value: 0.0
+        },
+        min: -1.0,
+        max: 1.0,
+      },
+      to: {
+        name: 'on/off',
+        value: false,
+      }
+    },
+    uniforms: {
+      st: 'uHlSt',
+      to: 'uHlTo',
+    },
+  },
+  shadows: {
+    name: 'シャドウ',
+    values: {
+      st: {
+        name: '強さ',
+        target: {
+          value: 0.352
+        },
+        min: -1.0,
+        max: 1.0,
+      },
+      to: {
+        name: 'on/off',
         value: true,
       }
     },
     uniforms: {
-      st: 'uWarmSt',
-      to: 'uWarmTo',
+      st: 'uShSt',
+      to: 'uShTo',
+    },
+  },
+  contrast: {
+    name: 'コントラスト',
+    values: {
+      st: {
+        name: '強さ',
+        target: {
+          value: 0.0
+        },
+        min: -1.0,
+        max: 1.0,
+      },
+      to: {
+        name: 'on/off',
+        value: false,
+      }
+    },
+    uniforms: {
+      st: 'uCtSt',
+      to: 'uCtTo',
+    },
+  },
+  brilliance: {
+    name: 'ブリリアンス',
+    values: {
+      st: {
+        name: '強さ',
+        target: {
+          value: 0.0
+        },
+        min: -1.0,
+        max: 1.0,
+      },
+      to: {
+        name: 'on/off',
+        value: false,
+      }
+    },
+    uniforms: {
+      st: 'uBrSt',
+      to: 'uBrTo',
     },
   },
   rStrength: {
@@ -116,14 +170,14 @@ export const ctrlMember = {
       st: {
         name: '強さ',
         target: {
-          value: .5
+          value: 0.0
         },
-        min: 0.0,
+        min: -1.0,
         max: 1.0,
       },
       to: {
-        name: 'オン/オフ',
-        value: true,
+        name: 'on/off',
+        value: false,
       }
     },
     uniforms: {
@@ -137,14 +191,14 @@ export const ctrlMember = {
       st: {
         name: '強さ',
         target: {
-          value: .5
+          value: 0.0
         },
-        min: 0.0,
+        min: -1.0,
         max: 1.0,
       },
       to: {
-        name: 'オン/オフ',
-        value: true,
+        name: 'on/off',
+        value: false,
       }
     },
     uniforms: {
@@ -158,14 +212,14 @@ export const ctrlMember = {
       st: {
         name: '強さ',
         target: {
-          value: .5
+          value: 0.0
         },
-        min: 0.0,
+        min: -1.0,
         max: 1.0,
       },
       to: {
-        name: 'オン/オフ',
-        value: true,
+        name: 'on/off',
+        value: false,
       }
     },
     uniforms: {
@@ -176,15 +230,6 @@ export const ctrlMember = {
 }
 
 export const setUniforms = {
-  [ctrlMember.lightness.uniforms.st]: {
-    value: ctrlMember.lightness.values.st.target.value
-  },
-  [ctrlMember.lightness.uniforms.ra]: {
-    value: ctrlMember.lightness.values.ra.target.value
-  },
-  [ctrlMember.lightness.uniforms.to]: {
-    value: ctrlMember.lightness.values.to.value
-  },
   [ctrlMember.strengthPink.uniforms.st]: {
     value: ctrlMember.strengthPink.values.st.target.value
   },
@@ -194,17 +239,41 @@ export const setUniforms = {
   [ctrlMember.strengthPink.uniforms.to]: {
     value: ctrlMember.strengthPink.values.to.value
   },
-  [ctrlMember.coldFilter.uniforms.st]: {
-    value: ctrlMember.coldFilter.values.st.target.value
+  [ctrlMember.sakuraFilter.uniforms.st]: {
+    value: ctrlMember.sakuraFilter.values.st.target.value
   },
-  [ctrlMember.coldFilter.uniforms.to]: {
-    value: ctrlMember.coldFilter.values.to.value
+  [ctrlMember.sakuraFilter.uniforms.to]: {
+    value: ctrlMember.sakuraFilter.values.to.value
   },
-  [ctrlMember.warmFilter.uniforms.st]: {
-    value: ctrlMember.warmFilter.values.st.target.value
+  [ctrlMember.exposure.uniforms.st]: {
+    value: ctrlMember.exposure.values.st.target.value
   },
-  [ctrlMember.warmFilter.uniforms.to]: {
-    value: ctrlMember.warmFilter.values.to.value
+  [ctrlMember.exposure.uniforms.to]: {
+    value: ctrlMember.exposure.values.to.value
+  },
+  [ctrlMember.highlights.uniforms.st]: {
+    value: ctrlMember.highlights.values.st.target.value
+  },
+  [ctrlMember.highlights.uniforms.to]: {
+    value: ctrlMember.highlights.values.to.value
+  },
+  [ctrlMember.shadows.uniforms.st]: {
+    value: ctrlMember.shadows.values.st.target.value
+  },
+  [ctrlMember.shadows.uniforms.to]: {
+    value: ctrlMember.shadows.values.to.value
+  },
+  [ctrlMember.contrast.uniforms.st]: {
+    value: ctrlMember.contrast.values.st.target.value
+  },
+  [ctrlMember.contrast.uniforms.to]: {
+    value: ctrlMember.contrast.values.to.value
+  },
+  [ctrlMember.brilliance.uniforms.st]: {
+    value: ctrlMember.brilliance.values.st.target.value
+  },
+  [ctrlMember.brilliance.uniforms.to]: {
+    value: ctrlMember.brilliance.values.to.value
   },
   [ctrlMember.rStrength.uniforms.st]: {
     value: ctrlMember.rStrength.values.st.target.value

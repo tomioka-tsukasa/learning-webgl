@@ -19,7 +19,7 @@ export const strengthGui: StrengthGui = (
   ).onChange( (value: number) => {
     if (!shmatParams || !shmatParams.uniforms) return
     shmatParams.uniforms[uName.st].value = value
-  }).name('強さ')
+  }).name(params.st.name)
 
   folder.add(
     params.to,
@@ -27,7 +27,7 @@ export const strengthGui: StrengthGui = (
   ).onChange( (value: boolean) => {
     if (!shmatParams || !shmatParams.uniforms) return
     shmatParams.uniforms[uName.to].value = Number(value)
-  })
+  }).name(params.to.name)
 
   return folder
 }
@@ -50,7 +50,7 @@ export const strengthRangeGui: StrengthRangeGui = (
   ).onChange( (value: number) => {
     if (!shmatParams || !shmatParams.uniforms) return
     shmatParams.uniforms[uName.st].value = value
-  }).name('強さ')
+  }).name(params.st.name)
 
   folder.add(
     params.ra.target,
@@ -60,7 +60,7 @@ export const strengthRangeGui: StrengthRangeGui = (
   ).onChange( (value: number) => {
     if (!shmatParams || !shmatParams.uniforms) return
     shmatParams.uniforms[uName.ra].value = value
-  }).name('範囲')
+  }).name(params.ra.name)
 
   folder.add(
     params.to,
@@ -68,7 +68,7 @@ export const strengthRangeGui: StrengthRangeGui = (
   ).onChange( (value: boolean) => {
     if (!shmatParams || !shmatParams.uniforms) return
     shmatParams.uniforms[uName.to].value = Number(value)
-  })
+  }).name(params.to.name)
 
   return folder
 }
@@ -86,13 +86,13 @@ export const selectImage: SelectImage = (
   folder.add(
     params,
     'default',
-    params.values
-  ).onChange( async (value: string) => {
+    Object.keys(params.values)
+  ).onChange( async (key: string) => {
     if (!shmatParams || !shmatParams.uniforms) return
 
-    shmatParams.uniforms.uTex.value = await textureLoader(value)
+    shmatParams.uniforms.uTex.value = await textureLoader(params.values[key])
 
-    if (shmatParamsOriginal && shmatParamsOriginal.uniforms) shmatParamsOriginal.uniforms.uTex.value = await textureLoader(value)
+    if (shmatParamsOriginal && shmatParamsOriginal.uniforms) shmatParamsOriginal.uniforms.uTex.value = await textureLoader(params.values[key])
   }).name('選択画像')
 
   return folder

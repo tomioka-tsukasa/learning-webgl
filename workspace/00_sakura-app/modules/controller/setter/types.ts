@@ -73,5 +73,7 @@ export type SelectImage = (
 export type SelectImageParams = {
   name: string,
   default: string,
-  values: Array<string>,
+  values: {
+    [key: string]: string
+  },
 }

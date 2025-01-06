@@ -2,16 +2,21 @@ varying vec2 vUv;
 uniform sampler2D uTex;
 uniform sampler2D uOverlay;
 uniform float uTick;
-uniform float uLiSt;
-uniform float uLiRa;
-uniform float uLiTo;
 uniform float uStPinkSt;
 uniform float uStPinkRa;
 uniform float uStPinkTo;
-uniform float uColdSt;
-uniform float uColdTo;
-uniform float uWarmSt;
-uniform float uWarmTo;
+uniform float uSakuraSt;
+uniform float uSakuraTo;
+uniform float uExSt;
+uniform float uExTo;
+uniform float uHlSt;
+uniform float uHlTo;
+uniform float uShSt;
+uniform float uShTo;
+uniform float uCtSt;
+uniform float uCtTo;
+uniform float uBrSt;
+uniform float uBrTo;
 uniform float uRSt;
 uniform float uRTo;
 uniform float uGSt;
@@ -22,8 +27,31 @@ uniform float uBTo;
 #pragma glslify: hsl2rgb = require(glsl-hsl2rgb)
 #pragma glslify: rgb2hsl = require(../../src/glsl/pragma/rgb2hsl)
 
+vec3 sakuraFilter(vec3 color, float strength) {
+  float orSt = strength;
+  float total = 0.847 + 0.718 + 0.806; // 2.371
+  float rRate = 0.847 / total * 2.79929161749;
+  float gRate = 0.718 / total * 2.79929161749;
+  float bRate = 0.806 / total * 2.79929161749;
+
+  strength = mix(1., 3., orSt);
+
+  color = vec3(
+    clamp(color.r * rRate * strength, 0., 1.),
+    clamp(color.g * gRate * strength, 0., 1.),
+    clamp(color.b * bRate * strength, 0., 1.)
+  );
+
+  return color;
+}
+
 vec3 stPink(vec3 hsl, float range, float strength) {
-  strength = mix(0., 3., strength);
+  strength = strength / 2. + .5;
+  strength = mix(0., 2., strength);
+
+  if (strength > 1.) {
+    strength *= 1.5;
+  }
 
   if (hsl.x > 0.85 || hsl.x < 0.1) {
     if (hsl.y < range) {
@@ -32,42 +60,6 @@ vec3 stPink(vec3 hsl, float range, float strength) {
   }
 
   return hsl;
-}
-
-vec3 lightFix(vec3 hsl, float range, float strength) {
-  strength = mix(1., 2., strength);
-
-  if (hsl.z < range) {
-    hsl.z *= (strength + .2);
-  }
-
-  hsl.z *= strength;
-
-  return hsl;
-}
-
-vec3 coldColor(vec3 color, float strength) {
-  strength = mix(1., 1.5, strength);
-
-  float rRate = 0.96;
-  float gRate = 0.96;
-  float bRate = 1.0;
-
-  color = vec3(color.r * strength * rRate, color.g * strength * gRate, color.b * (strength + (strength - 1.)) * bRate);
-
-  return color;
-}
-
-vec3 warmColor(vec3 color, float strength) {
-  strength = mix(1., 3., strength);
-
-  float rRate = 1.;
-  float gRate = .84;
-  float bRate = .904;
-
-  color = vec3(color.r * strength * rRate, color.g * strength * gRate, color.b * strength * bRate);
-
-  return color;
 }
 
 vec4 overlay(vec4 base, vec4 overlay, float strength) {
@@ -131,24 +123,34 @@ void sketchEffect(vec4 baseTex, sampler2D uTex, vec2 vUv, vec3 color) {
   gl_FragColor = vec4(vec3(color + sketch * .46), baseTex.a);
 }
 
+vec3 exposure(vec3 color, float strength) {
+  return color * (pow(2., strength));
+}
+
+vec3 highlights(vec3 color, float amount) {
+  float highlight = smoothstep(0.3, 1.0, max(color.r, max(color.g, color.b)));
+  return mix(color, color * (1.0 + amount), highlight);
+}
+
+vec3 shadows(vec3 color, float amount) {
+  float amp = 2.;
+  float shadow = smoothstep(0.0, 0.5, max(color.r, max(color.g, color.b)));
+  return mix(color, color * (1.0 + amount * amp), 1.0 - shadow);
+}
+
+vec3 contrast(vec3 color, float amount) {
+  color = mix(vec3(0.75), color, clamp(amount + 1.0, .5, 2.));
+  return clamp(color, 0.0, 1.0);
+}
+
+vec3 brilliance(vec3 color, float amount) {
+  float luminance = dot(color, vec3(0.299, 0.587, 0.114));
+  vec3 adjustment = mix(vec3(1.0), vec3(1.0 + amount), smoothstep(0.0, 0.5, luminance));
+  return color * adjustment;
+}
+
 void main() {
   float tick = uTick * .01;
-  float liSt = uLiSt;
-  float liRa = uLiRa;
-  float liTo = uLiTo;
-  float stPinkSt = uStPinkSt;
-  float stPinkRa = uStPinkRa;
-  float stPinkTo = uStPinkTo;
-  float coldSt = uColdSt;
-  float coldTo = uColdTo;
-  float warmSt = uWarmSt;
-  float warmTo = uWarmTo;
-  float rSt = uRSt;
-  float rTo = uRTo;
-  float gSt = uGSt;
-  float gTo = uGTo;
-  float bSt = uBSt;
-  float bTo = uBTo;
   const float blendStrength = .6;
 
   vec4 baseTex = texture2D(uTex, vUv);
@@ -156,40 +158,55 @@ void main() {
 
   vec3 hsl = rgb2hsl(baseTex.rgb);
 
-  if (stPinkTo == 1.0) {
-    hsl = stPink(hsl, stPinkRa, stPinkSt);
-  }
-
-  if (liTo == 1.0) {
-    hsl = lightFix(hsl, liRa, liSt);
+  if (uStPinkTo == 1.0) {
+    hsl = stPink(hsl, uStPinkRa, uStPinkSt);
   }
 
   vec3 color = hsl2rgb(hsl);
 
-  if (coldTo == 1.0) {
-    color = coldColor(color, uColdSt);
+  if (uSakuraTo == 1.0) {
+    color = sakuraFilter(color, uSakuraSt);
   }
 
-  if (warmTo == 1.0) {
-    color = warmColor(color, uWarmSt);
+  if (uRTo == 1.0) {
+    float rSt = uRSt + 1.;
+    color = vec3(clamp(color.r * rSt, 0., 1.), color.g, color.b);
   }
 
-  if (rTo == 1.0) {
-    color = vec3(clamp(color.r * 2. * rSt, 0., 1.), color.g, color.b);
+  if (uGTo == 1.0) {
+    float gSt = uGSt + 1.;
+    color = vec3(color.r, clamp(color.g * gSt, 0., 1.), color.b);
   }
 
-  if (gTo == 1.0) {
-    color = vec3(color.r, clamp(color.g * 2. * gSt, 0., 1.), color.b);
+  if (uBTo == 1.0) {
+    float bSt = uBSt + 1.;
+    color = vec3(color.r, color.g, clamp(color.b * bSt, 0., 1.));
   }
 
-  if (bTo == 1.0) {
-    color = vec3(color.r, color.g, clamp(color.b * 2. * bSt, 0., 1.));
+  if (uExTo == 1.0) {
+    color = exposure(color, uExSt);
   }
 
-  vec4 blendColor = overlay(baseTex, overlayTex, blendStrength);
+  if (uHlTo == 1.0) {
+    color = highlights(color, uHlSt);
+  }
+
+  if (uShTo == 1.0) {
+    color = shadows(color, uShSt);
+  }
+
+  if (uCtTo == 1.0) {
+    color = contrast(color, uCtSt);
+  }
+
+  if (uBrTo == 1.0) {
+    color = brilliance(color, uBrSt);
+  }
 
   gl_FragColor = vec4(color.rgb, baseTex.a);
 
   // sketchEffect(baseTex, uTex, vUv, color);
+
+  // vec4 blendColor = overlay(baseTex, overlayTex, blendStrength);
   // gl_FragColor = blendColor;
 }

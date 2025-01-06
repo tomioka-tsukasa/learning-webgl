@@ -30,7 +30,7 @@ export const setup: Setup = async () => {
           value: 0
         },
         uTex: {
-          value: await textureLoader(ctrlMember.selectImage.default)
+          value: await textureLoader(ctrlMember.selectImage.values[ctrlMember.selectImage.default])
         },
         uOverlay: {
           value: await textureLoader('/images/overlay-1.jpg')
