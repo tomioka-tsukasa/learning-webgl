@@ -80,10 +80,7 @@ export const selectImage: SelectImage = (
   shmatParams,
   shmatParamsOriginal,
 ) => {
-  const folder = rootFolder.addFolder(name)
-  folder.open()
-
-  folder.add(
+  rootFolder.add(
     params,
     'default',
     Object.keys(params.values)
@@ -93,7 +90,7 @@ export const selectImage: SelectImage = (
     shmatParams.uniforms.uTex.value = await textureLoader(params.values[key])
 
     if (shmatParamsOriginal && shmatParamsOriginal.uniforms) shmatParamsOriginal.uniforms.uTex.value = await textureLoader(params.values[key])
-  }).name('選択画像')
+  }).name(name)
 
-  return folder
+  return rootFolder
 }

@@ -8,7 +8,7 @@ export const initCtrl: InitCtrl = (
   shmatParamsOriginal,
 ) => {
   const gui = new GUI({
-    title: '開く / 閉じる'
+    title: '【Controller】 開く / 閉じる'
   })
 
   selectImage(
